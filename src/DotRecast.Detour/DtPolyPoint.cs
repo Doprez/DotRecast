@@ -1,13 +1,14 @@
-﻿using DotRecast.Core.Numerics;
+using DotRecast.Core.Numerics;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Detour
 {
     public readonly struct DtPolyPoint
     {
         public readonly long refs;
-        public readonly RcVec3f pt;
+        public readonly Vector3 pt;
 
-        public DtPolyPoint(long polyRefs, RcVec3f polyPt)
+        public DtPolyPoint(long polyRefs, Vector3 polyPt)
         {
             refs = polyRefs;
             pt = polyPt;

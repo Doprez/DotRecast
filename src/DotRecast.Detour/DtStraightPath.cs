@@ -19,17 +19,18 @@ freely, subject to the following restrictions:
 */
 
 using DotRecast.Core.Numerics;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Detour
 {
     //TODO: (PP) Add comments
     public readonly struct DtStraightPath
     {
-        public readonly RcVec3f pos;
+        public readonly Vector3 pos;
         public readonly int flags;
         public readonly long refs;
 
-        public DtStraightPath(RcVec3f pos, int flags, long refs)
+        public DtStraightPath(Vector3 pos, int flags, long refs)
         {
             this.pos = pos;
             this.flags = flags;

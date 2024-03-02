@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using DotRecast.Core;
 using DotRecast.Core.Collections;
 using DotRecast.Core.Numerics;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Recast.Geom
 {
@@ -31,8 +32,8 @@ namespace DotRecast.Recast.Geom
         public readonly float[] vertices;
         public readonly int[] faces;
         public readonly float[] normals;
-        private RcVec3f bmin;
-        private RcVec3f bmax;
+        private Vector3 bmin;
+        private Vector3 bmax;
 
         private readonly List<RcConvexVolume> volumes = new List<RcConvexVolume>();
         private readonly RcTriMesh _mesh;
@@ -93,12 +94,12 @@ namespace DotRecast.Recast.Geom
             return _mesh;
         }
 
-        public RcVec3f GetMeshBoundsMin()
+        public Vector3 GetMeshBoundsMin()
         {
             return bmin;
         }
 
-        public RcVec3f GetMeshBoundsMax()
+        public Vector3 GetMeshBoundsMax()
         {
             return bmax;
         }
@@ -132,7 +133,7 @@ namespace DotRecast.Recast.Geom
             throw new NotImplementedException();
         }
 
-        public void AddOffMeshConnection(RcVec3f start, RcVec3f end, float radius, bool bidir, int area, int flags)
+        public void AddOffMeshConnection(Vector3 start, Vector3 end, float radius, bool bidir, int area, int flags)
         {
             throw new NotImplementedException();
         }
@@ -150,8 +151,8 @@ namespace DotRecast.Recast.Geom
                 int v1 = faces[i + 1] * 3;
                 int v2 = faces[i + 2] * 3;
 
-                var e0 = new RcVec3f();
-                var e1 = new RcVec3f();
+                var e0 = new Vector3();
+                var e1 = new Vector3();
                 e0.X = vertices[v1 + 0] - vertices[v0 + 0];
                 e0.Y = vertices[v1 + 1] - vertices[v0 + 1];
                 e0.Z = vertices[v1 + 2] - vertices[v0 + 2];

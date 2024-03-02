@@ -19,14 +19,15 @@ freely, subject to the following restrictions:
 */
 
 using DotRecast.Core.Numerics;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Detour.Crowd
 {
     public class DtPathQuery
     {
         /// Path find start and end location.
-        public RcVec3f startPos = new RcVec3f();
-        public RcVec3f endPos = new RcVec3f();
+        public Vector3 startPos = new Vector3();
+        public Vector3 endPos = new Vector3();
         public long startRef;
         public long endRef;
         

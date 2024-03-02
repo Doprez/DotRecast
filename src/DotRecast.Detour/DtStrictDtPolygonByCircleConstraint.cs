@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using DotRecast.Core.Numerics;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Detour
 {
@@ -31,7 +32,7 @@ namespace DotRecast.Detour
             return temp;
         }
 
-        public float[] Apply(float[] verts, RcVec3f center, float radius)
+        public float[] Apply(float[] verts, Vector3 center, float radius)
         {
             float radiusSqr = radius * radius;
             int outsideVertex = -1;
@@ -62,7 +63,7 @@ namespace DotRecast.Detour
         }
 
 
-        private float[] Circle(RcVec3f center, float radius)
+        private float[] Circle(Vector3 center, float radius)
         {
             float[] circle = new float[12 * 3];
             for (int i = 0; i < CIRCLE_SEGMENTS * 3; i += 3)

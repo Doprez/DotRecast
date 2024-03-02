@@ -19,6 +19,7 @@ freely, subject to the following restrictions:
 */
 
 using DotRecast.Core.Numerics;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Detour
 {
@@ -80,10 +81,10 @@ namespace DotRecast.Detour
         public float walkableClimb;
 
         /** The minimum bounds of the tile's AABB. [(x, y, z)] */
-        public RcVec3f bmin = new RcVec3f();
+        public Vector3 bmin = new Vector3();
 
         /** The maximum bounds of the tile's AABB. [(x, y, z)] */
-        public RcVec3f bmax = new RcVec3f();
+        public Vector3 bmax = new Vector3();
 
         /** The bounding volume quantization factor. */
         public float bvQuantFactor;

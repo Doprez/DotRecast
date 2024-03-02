@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DotRecast.Core.Numerics;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Detour.Extras.Jumplink
 {
@@ -9,20 +10,20 @@ namespace DotRecast.Detour.Extras.Jumplink
         public readonly List<GroundSegment> end = new List<GroundSegment>();
         public readonly Trajectory trajectory;
 
-        public readonly RcVec3f ax = new RcVec3f();
-        public readonly RcVec3f ay = new RcVec3f();
-        public readonly RcVec3f az = new RcVec3f();
+        public readonly Vector3 ax = new Vector3();
+        public readonly Vector3 ay = new Vector3();
+        public readonly Vector3 az = new Vector3();
 
         public EdgeSampler(JumpEdge edge, Trajectory trajectory)
         {
             this.trajectory = trajectory;
-            ax = RcVec3f.Subtract(edge.sq, edge.sp);
-            ax = RcVec3f.Normalize(ax);
+            ax = Vector3.Subtract(edge.sq, edge.sp);
+            ax = Vector3.Normalize(ax);
             
-            az = new RcVec3f(ax.Z, 0, -ax.X);
-            az = RcVec3f.Normalize(az);
+            az = new Vector3(ax.Z, 0, -ax.X);
+            az = Vector3.Normalize(az);
             
-            ay = new RcVec3f(0, 1, 0);
+            ay = new Vector3(0, 1, 0);
         }
     }
 }

@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using DotRecast.Core;
 using DotRecast.Core.Numerics;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Recast
 {
@@ -444,8 +445,8 @@ namespace DotRecast.Recast
             int lh = h - borderSize * 2;
 
             // Build contracted bbox for layers.
-            RcVec3f bmin = chf.bmin;
-            RcVec3f bmax = chf.bmax;
+            Vector3 bmin = chf.bmin;
+            Vector3 bmax = chf.bmax;
             bmin.X += borderSize * chf.cs;
             bmin.Z += borderSize * chf.cs;
             bmax.X -= borderSize * chf.cs;

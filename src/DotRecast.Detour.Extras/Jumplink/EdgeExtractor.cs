@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using DotRecast.Core.Numerics;
 using DotRecast.Recast;
+using Stride.Core.Mathematics;
 using static DotRecast.Recast.RcConstants;
 
 
@@ -13,7 +14,7 @@ namespace DotRecast.Detour.Extras.Jumplink
             List<JumpEdge> edges = new List<JumpEdge>();
             if (mesh != null)
             {
-                RcVec3f orig = mesh.bmin;
+                Vector3 orig = mesh.bmin;
                 float cs = mesh.cs;
                 float ch = mesh.ch;
                 for (int i = 0; i < mesh.npolys; i++)

@@ -19,6 +19,7 @@ freely, subject to the following restrictions:
 using System.Collections.Generic;
 using DotRecast.Core.Numerics;
 using NUnit.Framework;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Detour.Test;
 
@@ -108,7 +109,7 @@ public class FindPolysAroundCircleTest : AbstractDetourTest
         for (int i = 0; i < startRefs.Length; i++)
         {
             long startRef = startRefs[i];
-            RcVec3f startPos = startPoss[i];
+            Vector3 startPos = startPoss[i];
             var status = query.FindPolysAroundCircle(startRef, startPos, 7.5f, filter, ref refs, ref parentRefs, ref costs);
             Assert.That(status.Succeeded(), Is.True);
 

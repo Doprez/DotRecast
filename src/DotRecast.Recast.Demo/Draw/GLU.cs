@@ -19,6 +19,7 @@ freely, subject to the following restrictions:
 using System;
 using DotRecast.Core;
 using DotRecast.Core.Numerics;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Recast.Demo.Draw;
 
@@ -65,7 +66,7 @@ public static class GLU
         matrix.M44 = 0.0f;
     }
 
-    public static int GlhUnProjectf(float winx, float winy, float winz, float[] modelview, float[] projection, int[] viewport, ref RcVec3f objectCoordinate)
+    public static int GlhUnProjectf(float winx, float winy, float winz, float[] modelview, float[] projection, int[] viewport, ref Vector3 objectCoordinate)
     {
         // Transformation matrices
         float[] m = new float[16], A = new float[16];

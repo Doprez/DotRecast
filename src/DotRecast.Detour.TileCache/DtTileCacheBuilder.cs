@@ -25,6 +25,7 @@ using DotRecast.Core;
 using DotRecast.Core.Numerics;
 using DotRecast.Detour.TileCache.Io;
 using DotRecast.Recast;
+using Stride.Core.Mathematics;
 
 
 namespace DotRecast.Detour.TileCache
@@ -1801,10 +1802,10 @@ namespace DotRecast.Detour.TileCache
             return mesh;
         }
 
-        public void MarkCylinderArea(DtTileCacheLayer layer, RcVec3f orig, float cs, float ch, RcVec3f pos, float radius, float height, int areaId)
+        public void MarkCylinderArea(DtTileCacheLayer layer, Vector3 orig, float cs, float ch, Vector3 pos, float radius, float height, int areaId)
         {
-            RcVec3f bmin = new RcVec3f();
-            RcVec3f bmax = new RcVec3f();
+            Vector3 bmin = new Vector3();
+            Vector3 bmax = new Vector3();
             bmin.X = pos.X - radius;
             bmin.Y = pos.Y;
             bmin.Z = pos.Z - radius;
@@ -1862,7 +1863,7 @@ namespace DotRecast.Detour.TileCache
             }
         }
 
-        public void MarkBoxArea(DtTileCacheLayer layer, RcVec3f orig, float cs, float ch, RcVec3f bmin, RcVec3f bmax, int areaId)
+        public void MarkBoxArea(DtTileCacheLayer layer, Vector3 orig, float cs, float ch, Vector3 bmin, Vector3 bmax, int areaId)
         {
             int w = layer.header.width;
             int h = layer.header.height;
@@ -1990,7 +1991,7 @@ namespace DotRecast.Detour.TileCache
             return layer;
         }
 
-        public void MarkBoxArea(DtTileCacheLayer layer, RcVec3f orig, float cs, float ch, RcVec3f center, RcVec3f extents,
+        public void MarkBoxArea(DtTileCacheLayer layer, Vector3 orig, float cs, float ch, Vector3 center, Vector3 extents,
             float[] rotAux, int areaId)
         {
             int w = layer.header.width;

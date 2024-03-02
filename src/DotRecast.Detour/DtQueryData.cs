@@ -19,6 +19,7 @@ freely, subject to the following restrictions:
 */
 
 using DotRecast.Core.Numerics;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Detour
 {
@@ -29,8 +30,8 @@ namespace DotRecast.Detour
         public float lastBestNodeCost;
         public long startRef;
         public long endRef;
-        public RcVec3f startPos;
-        public RcVec3f endPos;
+        public Vector3 startPos;
+        public Vector3 endPos;
         public IDtQueryFilter filter;
         public int options;
         public float raycastLimitSqr;

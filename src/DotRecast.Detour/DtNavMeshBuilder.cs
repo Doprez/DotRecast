@@ -21,6 +21,7 @@ freely, subject to the following restrictions:
 using System;
 using DotRecast.Core;
 using DotRecast.Core.Numerics;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Detour
 {
@@ -220,7 +221,7 @@ namespace DotRecast.Detour
         const int XM = 1 << 2;
         const int ZM = 1 << 3;
 
-        public static int ClassifyOffMeshPoint(RcVec3f pt, RcVec3f bmin, RcVec3f bmax)
+        public static int ClassifyOffMeshPoint(Vector3 pt, Vector3 bmin, Vector3 bmax)
         {
             int outcode = 0;
             outcode |= (pt.X >= bmax.X) ? XP : 0;
@@ -307,8 +308,8 @@ namespace DotRecast.Detour
 
                 hmin -= option.walkableClimb;
                 hmax += option.walkableClimb;
-                RcVec3f bmin = new RcVec3f();
-                RcVec3f bmax = new RcVec3f();
+                Vector3 bmin = new Vector3();
+                Vector3 bmax = new Vector3();
                 bmin = option.bmin;
                 bmax = option.bmax;
                 bmin.Y = hmin;

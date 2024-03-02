@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using DotRecast.Core.Numerics;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Recast.Demo.Draw;
 
@@ -26,7 +27,7 @@ public struct OpenGLVertex
     [FieldOffset(20)]
     private readonly int color;
 
-    public OpenGLVertex(RcVec3f pos, RcVec2f uv, int color) :
+    public OpenGLVertex(Vector3 pos, Vector2 uv, int color) :
         this(pos.X, pos.Y, pos.Z, uv.X, uv.Y, color)
     {
     }
@@ -36,7 +37,7 @@ public struct OpenGLVertex
     {
     }
 
-    public OpenGLVertex(RcVec3f pos, int color) :
+    public OpenGLVertex(Vector3 pos, int color) :
         this(pos.X, pos.Y, pos.Z, 0f, 0f, color)
     {
     }

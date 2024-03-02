@@ -1,4 +1,4 @@
-﻿using DotRecast.Core;
+using DotRecast.Core;
 using DotRecast.Core.Numerics;
 using DotRecast.Detour.TileCache;
 using DotRecast.Detour.TileCache.Io.Compress;
@@ -7,6 +7,7 @@ using DotRecast.Recast.Toolset;
 using DotRecast.Recast.Toolset.Tools;
 using ImGuiNET;
 using Serilog;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Recast.Demo.Tools;
 
@@ -66,8 +67,8 @@ public class ObstacleSampleTool : ISampleTool
             if (ob.state == DtObstacleState.DT_OBSTACLE_EMPTY)
                 continue;
 
-            RcVec3f bmin = RcVec3f.Zero;
-            RcVec3f bmax = RcVec3f.Zero;
+            Vector3 bmin = Vector3.Zero;
+            Vector3 bmax = Vector3.Zero;
             tc.GetObstacleBounds(ob, ref bmin, ref bmax);
 
             int col = 0;
@@ -98,7 +99,7 @@ public class ObstacleSampleTool : ISampleTool
     }
 
 
-    public void HandleClick(RcVec3f s, RcVec3f p, bool shift)
+    public void HandleClick(Vector3 s, Vector3 p, bool shift)
     {
         if (shift)
         {
@@ -118,7 +119,7 @@ public class ObstacleSampleTool : ISampleTool
             tc.Update();
     }
 
-    public void HandleClickRay(RcVec3f start, RcVec3f direction, bool shift)
+    public void HandleClickRay(Vector3 start, Vector3 direction, bool shift)
     {
     }
 }

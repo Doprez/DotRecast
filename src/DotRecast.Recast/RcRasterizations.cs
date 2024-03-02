@@ -21,6 +21,7 @@ freely, subject to the following restrictions:
 using System;
 using DotRecast.Core;
 using DotRecast.Core.Numerics;
+using Stride.Core.Mathematics;
 using static DotRecast.Recast.RcConstants;
 
 namespace DotRecast.Recast
@@ -34,7 +35,7 @@ namespace DotRecast.Recast
         /// @param[in]	bMin	Min axis extents of bounding box B
         /// @param[in]	bMax	Max axis extents of bounding box B
         /// @returns true if the two bounding boxes overlap.  False otherwise.
-        private static bool OverlapBounds(RcVec3f aMin, RcVec3f aMax, RcVec3f bMin, RcVec3f bMax)
+        private static bool OverlapBounds(Vector3 aMin, Vector3 aMax, Vector3 bMin, Vector3 bMax)
         {
             return
                 aMin.X <= bMax.X && aMax.X >= bMin.X &&
@@ -231,16 +232,16 @@ namespace DotRecast.Recast
         /// @returns true if the operation completes successfully.  false if there was an error adding spans to the heightfield.
         private static bool RasterizeTri(float[] verts, int v0, int v1, int v2,
             int areaID, RcHeightfield heightfield,
-            RcVec3f heightfieldBBMin, RcVec3f heightfieldBBMax,
+            Vector3 heightfieldBBMin, Vector3 heightfieldBBMax,
             float cellSize, float inverseCellSize, float inverseCellHeight,
             int flagMergeThreshold)
         {
             // Calculate the bounding box of the triangle.
-            RcVec3f triBBMin = RcVecUtils.Create(verts, v0 * 3);
+            Vector3 triBBMin = RcVecUtils.Create(verts, v0 * 3);
             triBBMin = RcVecUtils.Min(triBBMin, verts, v1 * 3);
             triBBMin = RcVecUtils.Min(triBBMin, verts, v2 * 3);
 
-            RcVec3f triBBMax = RcVecUtils.Create(verts, v0 * 3);
+            Vector3 triBBMax = RcVecUtils.Create(verts, v0 * 3);
             triBBMax = RcVecUtils.Max(triBBMax, verts, v1 * 3);
             triBBMax = RcVecUtils.Max(triBBMax, verts, v2 * 3);
 

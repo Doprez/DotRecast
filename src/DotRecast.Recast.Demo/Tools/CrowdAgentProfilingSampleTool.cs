@@ -30,6 +30,7 @@ using DotRecast.Recast.Toolset.Tools;
 using ImGuiNET;
 using Serilog;
 using static DotRecast.Recast.Demo.Draw.DebugDraw;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Recast.Demo.Tools;
 
@@ -137,7 +138,7 @@ public class CrowdAgentProfilingSampleTool : ISampleTool
             foreach (DtCrowdAgent ag in crowd.GetActiveAgents())
             {
                 float radius = ag.option.radius;
-                RcVec3f pos = ag.npos;
+                Vector3 pos = ag.npos;
                 dd.DebugDrawCircle(pos.X, pos.Y, pos.Z, radius, DuRGBA(0, 0, 0, 32), 2.0f);
             }
 
@@ -147,7 +148,7 @@ public class CrowdAgentProfilingSampleTool : ISampleTool
 
                 float height = ag.option.height;
                 float radius = ag.option.radius;
-                RcVec3f pos = ag.npos;
+                Vector3 pos = ag.npos;
 
                 int col = DuRGBA(220, 220, 220, 128);
                 if (crowAgentData.type == RcCrowdAgentType.TRAVELLER)
@@ -202,7 +203,7 @@ public class CrowdAgentProfilingSampleTool : ISampleTool
     }
 
 
-    public void HandleClick(RcVec3f s, RcVec3f p, bool shift)
+    public void HandleClick(Vector3 s, Vector3 p, bool shift)
     {
         //throw new NotImplementedException();
     }
@@ -213,7 +214,7 @@ public class CrowdAgentProfilingSampleTool : ISampleTool
         _tool.Update(dt);
     }
 
-    public void HandleClickRay(RcVec3f start, RcVec3f direction, bool shift)
+    public void HandleClickRay(Vector3 start, Vector3 direction, bool shift)
     {
         //throw new NotImplementedException();
     }

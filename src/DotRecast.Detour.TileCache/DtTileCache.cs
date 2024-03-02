@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using DotRecast.Core;
 using DotRecast.Core.Numerics;
 using DotRecast.Detour.TileCache.Io;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Detour.TileCache
 {
@@ -346,7 +347,7 @@ namespace DotRecast.Detour.TileCache
         }
 
         // Cylinder obstacle
-        public long AddObstacle(RcVec3f pos, float radius, float height)
+        public long AddObstacle(Vector3 pos, float radius, float height)
         {
             DtTileCacheObstacle ob = AllocObstacle();
             ob.type = DtTileCacheObstacleType.CYLINDER;
@@ -359,7 +360,7 @@ namespace DotRecast.Detour.TileCache
         }
 
         // Aabb obstacle
-        public long AddBoxObstacle(RcVec3f bmin, RcVec3f bmax)
+        public long AddBoxObstacle(Vector3 bmin, Vector3 bmax)
         {
             DtTileCacheObstacle ob = AllocObstacle();
             ob.type = DtTileCacheObstacleType.BOX;
@@ -371,7 +372,7 @@ namespace DotRecast.Detour.TileCache
         }
 
         // Box obstacle: can be rotated in Y
-        public long AddBoxObstacle(RcVec3f center, RcVec3f extents, float yRadians)
+        public long AddBoxObstacle(Vector3 center, Vector3 extents, float yRadians)
         {
             DtTileCacheObstacle ob = AllocObstacle();
             ob.type = DtTileCacheObstacleType.ORIENTED_BOX;
@@ -437,7 +438,7 @@ namespace DotRecast.Detour.TileCache
             return m_obstacles[i];
         }
 
-        private List<long> QueryTiles(RcVec3f bmin, RcVec3f bmax)
+        private List<long> QueryTiles(Vector3 bmin, Vector3 bmax)
         {
             List<long> results = new List<long>();
             float tw = m_params.width * m_params.cs;
@@ -454,8 +455,8 @@ namespace DotRecast.Detour.TileCache
                     foreach (long i in tiles)
                     {
                         DtCompressedTile tile = m_tiles[DecodeTileIdTile(i)];
-                        RcVec3f tbmin = new RcVec3f();
-                        RcVec3f tbmax = new RcVec3f();
+                        Vector3 tbmin = new Vector3();
+                        Vector3 tbmax = new Vector3();
                         CalcTightTileBounds(tile.header, ref tbmin, ref tbmax);
                         if (DtUtils.OverlapBounds(bmin, bmax, tbmin, tbmax))
                         {
@@ -498,8 +499,8 @@ namespace DotRecast.Detour.TileCache
                     if (req.action == DtObstacleRequestAction.REQUEST_ADD)
                     {
                         // Find touched tiles.
-                        RcVec3f bmin = new RcVec3f();
-                        RcVec3f bmax = new RcVec3f();
+                        Vector3 bmin = new Vector3();
+                        Vector3 bmax = new Vector3();
                         GetObstacleBounds(ob, ref bmin, ref bmax);
                         ob.touched = QueryTiles(bmin, bmax);
                         // Add tiles to update list.
@@ -680,7 +681,7 @@ namespace DotRecast.Detour.TileCache
             return layer;
         }
 
-        void CalcTightTileBounds(DtTileCacheLayerHeader header, ref RcVec3f bmin, ref RcVec3f bmax)
+        void CalcTightTileBounds(DtTileCacheLayerHeader header, ref Vector3 bmin, ref Vector3 bmax)
         {
             float cs = m_params.cs;
             bmin.X = header.bmin.X + header.minx * cs;
@@ -691,7 +692,7 @@ namespace DotRecast.Detour.TileCache
             bmax.Z = header.bmin.Z + (header.maxy + 1) * cs;
         }
 
-        public void GetObstacleBounds(DtTileCacheObstacle ob, ref RcVec3f bmin, ref RcVec3f bmax)
+        public void GetObstacleBounds(DtTileCacheObstacle ob, ref Vector3 bmin, ref Vector3 bmax)
         {
             if (ob.type == DtTileCacheObstacleType.CYLINDER)
             {

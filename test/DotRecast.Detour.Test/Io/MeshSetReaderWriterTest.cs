@@ -24,6 +24,7 @@ using DotRecast.Detour.Io;
 using DotRecast.Recast;
 using DotRecast.Recast.Geom;
 using NUnit.Framework;
+using Stride.Core.Mathematics;
 
 
 namespace DotRecast.Detour.Test.Io;
@@ -68,8 +69,8 @@ public class MeshSetReaderWriterTest
         header.numTiles = 0;
         DtNavMesh mesh = new DtNavMesh(header.option, 6);
 
-        RcVec3f bmin = geom.GetMeshBoundsMin();
-        RcVec3f bmax = geom.GetMeshBoundsMax();
+        Vector3 bmin = geom.GetMeshBoundsMin();
+        Vector3 bmax = geom.GetMeshBoundsMax();
         RcCommons.CalcTileCount(bmin, bmax, m_cellSize, m_tileSize, m_tileSize, out var tw, out var th);
         for (int y = 0; y < th; ++y)
         {

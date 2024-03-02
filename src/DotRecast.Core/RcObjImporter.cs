@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using DotRecast.Core.Numerics;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Core
 {
@@ -71,7 +72,7 @@ namespace DotRecast.Core
             }
         }
 
-        private static RcVec3f ReadVector3f(string line)
+        private static Vector3 ReadVector3f(string line)
         {
             string[] v = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
             if (v.Length < 4)
@@ -80,7 +81,7 @@ namespace DotRecast.Core
             }
 
             // fix - https://github.com/ikpil/DotRecast/issues/7
-            return new RcVec3f(
+            return new Vector3(
                 float.Parse(v[1], CultureInfo.InvariantCulture),
                 float.Parse(v[2], CultureInfo.InvariantCulture),
                 float.Parse(v[3], CultureInfo.InvariantCulture)

@@ -19,6 +19,7 @@ freely, subject to the following restrictions:
 */
 
 using DotRecast.Core.Numerics;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Recast
 {
@@ -50,10 +51,10 @@ namespace DotRecast.Recast
         public int maxRegions;
 
         /** The minimum bounds in world space. [(x, y, z)] */
-        public RcVec3f bmin = new RcVec3f();
+        public Vector3 bmin = new Vector3();
 
         /** The maximum bounds in world space. [(x, y, z)] */
-        public RcVec3f bmax = new RcVec3f();
+        public Vector3 bmax = new Vector3();
 
         /** The size of each cell. (On the xz-plane.) */
         public float cs;

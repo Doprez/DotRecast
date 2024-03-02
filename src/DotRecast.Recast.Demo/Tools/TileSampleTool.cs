@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using DotRecast.Core.Numerics;
 using DotRecast.Recast.Demo.Draw;
 using DotRecast.Recast.Toolset;
@@ -6,6 +6,7 @@ using DotRecast.Recast.Toolset.Builder;
 using DotRecast.Recast.Toolset.Tools;
 using ImGuiNET;
 using Serilog;
+using Stride.Core.Mathematics;
 using static DotRecast.Recast.Demo.Draw.DebugDraw;
 
 namespace DotRecast.Recast.Demo.Tools;
@@ -18,7 +19,7 @@ public class TileSampleTool : ISampleTool
     private readonly RcTileTool _tool;
 
     private bool _hitPosSet;
-    private RcVec3f _hitPos;
+    private Vector3 _hitPos;
 
     public TileSampleTool()
     {
@@ -62,8 +63,8 @@ public class TileSampleTool : ISampleTool
             int tx = (int)((_hitPos.X - bmin.X) / ts);
             int ty = (int)((_hitPos.Z - bmin.Z) / ts);
 
-            RcVec3f lastBuiltTileBmin = RcVec3f.Zero;
-            RcVec3f lastBuiltTileBmax = RcVec3f.Zero;
+            Vector3 lastBuiltTileBmin = Vector3.Zero;
+            Vector3 lastBuiltTileBmax = Vector3.Zero;
 
             lastBuiltTileBmin.X = bmin.X + tx * ts;
             lastBuiltTileBmin.Y = bmin.Y;
@@ -98,7 +99,7 @@ public class TileSampleTool : ISampleTool
     }
 
 
-    public void HandleClick(RcVec3f s, RcVec3f p, bool shift)
+    public void HandleClick(Vector3 s, Vector3 p, bool shift)
     {
         _hitPosSet = true;
         _hitPos = p;
@@ -130,7 +131,7 @@ public class TileSampleTool : ISampleTool
     {
     }
 
-    public void HandleClickRay(RcVec3f start, RcVec3f direction, bool shift)
+    public void HandleClickRay(Vector3 start, Vector3 direction, bool shift)
     {
     }
 }

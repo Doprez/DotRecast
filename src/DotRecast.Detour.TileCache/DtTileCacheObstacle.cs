@@ -20,6 +20,7 @@ freely, subject to the following restrictions:
 
 using System.Collections.Generic;
 using DotRecast.Core.Numerics;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Detour.TileCache
 {
@@ -27,12 +28,12 @@ namespace DotRecast.Detour.TileCache
     {
         public readonly int index;
         public DtTileCacheObstacleType type;
-        public RcVec3f pos = new RcVec3f();
-        public RcVec3f bmin = new RcVec3f();
-        public RcVec3f bmax = new RcVec3f();
+        public Vector3 pos = new Vector3();
+        public Vector3 bmin = new Vector3();
+        public Vector3 bmax = new Vector3();
         public float radius, height;
-        public RcVec3f center = new RcVec3f();
-        public RcVec3f extents = new RcVec3f();
+        public Vector3 center = new Vector3();
+        public Vector3 extents = new Vector3();
         public readonly float[] rotAux = new float[2]; // { Cos(0.5f*angle)*Sin(-0.5f*angle); Cos(0.5f*angle)*Cos(0.5f*angle) - 0.5 }
         
         public List<long> touched = new List<long>();

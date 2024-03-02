@@ -19,12 +19,13 @@ freely, subject to the following restrictions:
 */
 
 using DotRecast.Core.Numerics;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Detour.TileCache
 {
     public struct DtTileCacheParams
     {
-        public RcVec3f orig;
+        public Vector3 orig;
         public float cs, ch;
         public int width, height;
         public float walkableHeight;

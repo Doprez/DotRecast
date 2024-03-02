@@ -19,11 +19,12 @@ freely, subject to the following restrictions:
 
 using System;
 using DotRecast.Core.Numerics;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Detour
 {
     public interface IDtPolygonByCircleConstraint
     {
-        float[] Apply(float[] polyVerts, RcVec3f circleCenter, float radius);
+        float[] Apply(float[] polyVerts, Vector3 circleCenter, float radius);
     }
 }

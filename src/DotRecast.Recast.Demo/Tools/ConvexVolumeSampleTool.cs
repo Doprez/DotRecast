@@ -28,6 +28,7 @@ using ImGuiNET;
 using Serilog;
 using static DotRecast.Recast.Demo.Draw.DebugDraw;
 using static DotRecast.Recast.Demo.Draw.DebugDrawPrimitives;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Recast.Demo.Tools;
 
@@ -155,7 +156,7 @@ public class ConvexVolumeSampleTool : ISampleTool
         // ..
     }
 
-    public void HandleClick(RcVec3f s, RcVec3f p, bool shift)
+    public void HandleClick(Vector3 s, Vector3 p, bool shift)
     {
         var geom = _sample.GetInputGeom();
         if (shift)
@@ -174,7 +175,7 @@ public class ConvexVolumeSampleTool : ISampleTool
         // TODO Auto-generated method stub
     }
 
-    public void HandleClickRay(RcVec3f start, RcVec3f direction, bool shift)
+    public void HandleClickRay(Vector3 start, Vector3 direction, bool shift)
     {
     }
 }

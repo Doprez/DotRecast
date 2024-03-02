@@ -21,6 +21,7 @@ freely, subject to the following restrictions:
 using System;
 using System.Collections.Generic;
 using DotRecast.Core.Numerics;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Recast.Geom
 {
@@ -30,7 +31,7 @@ namespace DotRecast.Recast.Geom
         private int ntris;
         private int maxTrisPerChunk;
 
-        private void CalcExtends(BoundsItem[] items, int imin, int imax, ref RcVec2f bmin, ref RcVec2f bmax)
+        private void CalcExtends(BoundsItem[] items, int imin, int imax, ref Vector2 bmin, ref Vector2 bmax)
         {
             bmin.X = items[imin].bmin.X;
             bmin.Y = items[imin].bmin.Y;
@@ -185,7 +186,7 @@ namespace DotRecast.Recast.Geom
             }
         }
 
-        private bool CheckOverlapRect(float[] amin, float[] amax, RcVec2f bmin, RcVec2f bmax)
+        private bool CheckOverlapRect(float[] amin, float[] amax, Vector2 bmin, Vector2 bmax)
         {
             bool overlap = true;
             overlap = (amin[0] > bmax.X || amax[0] < bmin.X) ? false : overlap;
@@ -222,7 +223,7 @@ namespace DotRecast.Recast.Geom
             return ids;
         }
 
-        public List<RcChunkyTriMeshNode> GetChunksOverlappingSegment(RcVec2f p, RcVec2f q)
+        public List<RcChunkyTriMeshNode> GetChunksOverlappingSegment(Vector2 p, Vector2 q)
         {
             // Traverse tree
             List<RcChunkyTriMeshNode> ids = new List<RcChunkyTriMeshNode>();
@@ -251,13 +252,13 @@ namespace DotRecast.Recast.Geom
             return ids;
         }
 
-        private bool CheckOverlapSegment(RcVec2f p, RcVec2f q, RcVec2f bmin, RcVec2f bmax)
+        private bool CheckOverlapSegment(Vector2 p, Vector2 q, Vector2 bmin, Vector2 bmax)
         {
             const float EPSILON = 1e-6f;
 
             float tmin = 0;
             float tmax = 1;
-            var d = new RcVec2f();
+            var d = new Vector2();
             d.X = q.X - p.X;
             d.Y = q.Y - p.Y;
 

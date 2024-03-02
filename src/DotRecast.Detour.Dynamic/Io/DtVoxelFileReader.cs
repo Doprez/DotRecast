@@ -21,6 +21,7 @@ using System.IO;
 using DotRecast.Core;
 using DotRecast.Core.Numerics;
 using DotRecast.Detour.Io;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Detour.Dynamic.Io
 {
@@ -108,11 +109,11 @@ namespace DotRecast.Detour.Dynamic.Io
                 int width = buf.GetInt();
                 int depth = buf.GetInt();
                 int borderSize = buf.GetInt();
-                RcVec3f boundsMin = new RcVec3f();
+                Vector3 boundsMin = new Vector3();
                 boundsMin.X = buf.GetFloat();
                 boundsMin.Y = buf.GetFloat();
                 boundsMin.Z = buf.GetFloat();
-                RcVec3f boundsMax = new RcVec3f();
+                Vector3 boundsMax = new Vector3();
                 boundsMax.X = buf.GetFloat();
                 boundsMax.Y = buf.GetFloat();
                 boundsMax.Z = buf.GetFloat();

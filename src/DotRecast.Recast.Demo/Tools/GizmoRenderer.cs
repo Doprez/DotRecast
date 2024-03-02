@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using DotRecast.Core.Collections;
 using DotRecast.Core.Numerics;
 using DotRecast.Recast.Demo.Draw;
 using DotRecast.Recast.Toolset.Gizmos;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Recast.Demo.Tools;
 
@@ -38,9 +39,9 @@ public static class GizmoRenderer
 
     public static int GetColorByNormal(float[] vertices, int v0, int v1, int v2)
     {
-        RcVec3f e0 = new RcVec3f();
-        RcVec3f e1 = new RcVec3f();
-        RcVec3f normal = new RcVec3f();
+        Vector3 e0 = new Vector3();
+        Vector3 e1 = new Vector3();
+        Vector3 normal = new Vector3();
         for (int j = 0; j < 3; ++j)
         {
             e0 = RcVecUtils.Subtract(vertices, v1, v0);
@@ -50,7 +51,7 @@ public static class GizmoRenderer
         normal.X = e0.Y * e1.Z - e0.Z * e1.Y;
         normal.Y = e0.Z * e1.X - e0.X * e1.Z;
         normal.Z = e0.X * e1.Y - e0.Y * e1.X;
-        normal = RcVec3f.Normalize(normal);
+        normal = Vector3.Normalize(normal);
         float c = Math.Clamp(0.57735026f * (normal.X + normal.Y + normal.Z), -1, 1);
         int col = DebugDraw.DuLerpCol(
             DebugDraw.DuRGBA(32, 32, 0, 160),
@@ -62,15 +63,15 @@ public static class GizmoRenderer
 
     public static void RenderBox(RecastDebugDraw debugDraw, RcBoxGizmo box)
     {
-        var trX = new RcVec3f(box.halfEdges[0].X, box.halfEdges[1].X, box.halfEdges[2].X);
-        var trY = new RcVec3f(box.halfEdges[0].Y, box.halfEdges[1].Y, box.halfEdges[2].Y);
-        var trZ = new RcVec3f(box.halfEdges[0].Z, box.halfEdges[1].Z, box.halfEdges[2].Z);
+        var trX = new Vector3(box.halfEdges[0].X, box.halfEdges[1].X, box.halfEdges[2].X);
+        var trY = new Vector3(box.halfEdges[0].Y, box.halfEdges[1].Y, box.halfEdges[2].Y);
+        var trZ = new Vector3(box.halfEdges[0].Z, box.halfEdges[1].Z, box.halfEdges[2].Z);
         float[] vertices = new float[8 * 3];
         for (int i = 0; i < 8; i++)
         {
-            vertices[i * 3 + 0] = RcVec3f.Dot(RcBoxGizmo.VERTS[i], trX) + box.center.X;
-            vertices[i * 3 + 1] = RcVec3f.Dot(RcBoxGizmo.VERTS[i], trY) + box.center.Y;
-            vertices[i * 3 + 2] = RcVec3f.Dot(RcBoxGizmo.VERTS[i], trZ) + box.center.Z;
+            vertices[i * 3 + 0] = Vector3.Dot(RcBoxGizmo.VERTS[i], trX) + box.center.X;
+            vertices[i * 3 + 1] = Vector3.Dot(RcBoxGizmo.VERTS[i], trY) + box.center.Y;
+            vertices[i * 3 + 2] = Vector3.Dot(RcBoxGizmo.VERTS[i], trZ) + box.center.Z;
         }
 
         debugDraw.Begin(DebugDrawPrimitives.TRIS);

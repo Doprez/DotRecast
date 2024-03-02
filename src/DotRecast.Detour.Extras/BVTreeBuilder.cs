@@ -19,6 +19,7 @@ freely, subject to the following restrictions:
 
 using System;
 using DotRecast.Core.Numerics;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Detour.Extras
 {
@@ -40,8 +41,8 @@ namespace DotRecast.Detour.Extras
                 BVItem it = new BVItem();
                 items[i] = it;
                 it.i = i;
-                RcVec3f bmin = RcVecUtils.Create(data.verts, data.polys[i].verts[0] * 3);
-                RcVec3f bmax = RcVecUtils.Create(data.verts, data.polys[i].verts[0] * 3);
+                Vector3 bmin = RcVecUtils.Create(data.verts, data.polys[i].verts[0] * 3);
+                Vector3 bmax = RcVecUtils.Create(data.verts, data.polys[i].verts[0] * 3);
                 for (int j = 1; j < data.polys[i].vertCount; j++)
                 {
                     bmin = RcVecUtils.Min(bmin, data.verts, data.polys[i].verts[j] * 3);

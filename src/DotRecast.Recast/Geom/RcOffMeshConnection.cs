@@ -19,6 +19,7 @@ freely, subject to the following restrictions:
 */
 
 using DotRecast.Core.Numerics;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Recast.Geom
 {
@@ -33,7 +34,7 @@ namespace DotRecast.Recast.Geom
         public readonly int flags;
         public readonly int userId;
 
-        public RcOffMeshConnection(RcVec3f start, RcVec3f end, float radius, bool bidir, int area, int flags)
+        public RcOffMeshConnection(Vector3 start, Vector3 end, float radius, bool bidir, int area, int flags)
         {
             verts = new float[6];
             verts[0] = start.X;

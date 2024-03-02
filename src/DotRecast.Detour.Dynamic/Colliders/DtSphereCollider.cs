@@ -21,15 +21,16 @@ using System;
 using DotRecast.Core;
 using DotRecast.Core.Numerics;
 using DotRecast.Recast;
+using Stride.Core.Mathematics;
 
 namespace DotRecast.Detour.Dynamic.Colliders
 {
     public class DtSphereCollider : DtCollider
     {
-        private readonly RcVec3f center;
+        private readonly Vector3 center;
         private readonly float radius;
 
-        public DtSphereCollider(RcVec3f center, float radius, int area, float flagMergeThreshold)
+        public DtSphereCollider(Vector3 center, float radius, int area, float flagMergeThreshold)
             : base(area, flagMergeThreshold, Bounds(center, radius))
         {
             this.center = center;
@@ -42,7 +43,7 @@ namespace DotRecast.Detour.Dynamic.Colliders
                 context);
         }
 
-        private static float[] Bounds(RcVec3f center, float radius)
+        private static float[] Bounds(Vector3 center, float radius)
         {
             return new float[]
             {
