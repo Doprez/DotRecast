@@ -40,9 +40,10 @@ namespace DotRecast.Detour
             steerPosRef = 0;
 
             var shared = ArrayPool<DtStraightPath>.Shared;
+            var straightPathArr = shared.Rent(MAX_STEER_POINTS);
 
             // Find steer target.
-            var straightPath = shared.Rent(MAX_STEER_POINTS).ToList();
+            var straightPath = straightPathArr.ToList();
             var result = navQuery.FindStraightPath(startPos, endPos, path, ref straightPath, MAX_STEER_POINTS, 0);
             if (result.Failed())
             {
@@ -68,7 +69,8 @@ namespace DotRecast.Detour
             steerPos.Y = startPos.Y;
             steerPosFlag = straightPath[ns].flags;
             steerPosRef = straightPath[ns].refs;
-
+            
+            shared.Return(straightPathArr);
             return true;
         }
 

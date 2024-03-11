@@ -492,6 +492,10 @@ namespace DotRecast.Detour
                 closest = RcVecUtils.Lerp(verts, va, vb, edget[imin]);
             }
 
+            shared.Return(verts);
+            shared.Return(edged);
+            shared.Return(edget);
+
             return DtStatus.DT_SUCCESS;
         }
 

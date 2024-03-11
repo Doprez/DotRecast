@@ -1329,6 +1329,7 @@ namespace DotRecast.Detour
             // ok.
             var closest = ClosestPointOnDetailEdges(tile, poly, pos, false);
             height = closest.Y;
+            shared.Return(verts);
             return true;
         }
 
