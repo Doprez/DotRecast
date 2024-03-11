@@ -456,10 +456,12 @@ namespace DotRecast.Detour
                 return DtStatus.DT_FAILURE | DtStatus.DT_INVALID_PARAM;
             }
 
+            var shared = ArrayPool<float>.Shared;
+
             // Collect vertices.
-            float[] verts = new float[m_nav.GetMaxVertsPerPoly() * 3];
-            float[] edged = new float[m_nav.GetMaxVertsPerPoly()];
-            float[] edget = new float[m_nav.GetMaxVertsPerPoly()];
+            float[] verts = shared.Rent(m_nav.GetMaxVertsPerPoly() * 3);
+            float[] edged = shared.Rent(m_nav.GetMaxVertsPerPoly());
+            float[] edget = shared.Rent(m_nav.GetMaxVertsPerPoly());
             int nv = poly.vertCount;
             for (int i = 0; i < nv; ++i)
             {

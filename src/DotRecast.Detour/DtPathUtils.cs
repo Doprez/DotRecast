@@ -19,7 +19,9 @@ freely, subject to the following restrictions:
 */
 
 using System;
+using System.Buffers;
 using System.Collections.Generic;
+using System.Linq;
 using DotRecast.Core.Numerics;
 
 namespace DotRecast.Detour
@@ -37,8 +39,10 @@ namespace DotRecast.Detour
             steerPosFlag = 0;
             steerPosRef = 0;
 
+            var shared = ArrayPool<DtStraightPath>.Shared;
+
             // Find steer target.
-            var straightPath = new List<DtStraightPath>(MAX_STEER_POINTS);
+            var straightPath = shared.Rent(MAX_STEER_POINTS).ToList();
             var result = navQuery.FindStraightPath(startPos, endPos, path, ref straightPath, MAX_STEER_POINTS, 0);
             if (result.Failed())
             {

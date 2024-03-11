@@ -19,6 +19,7 @@ freely, subject to the following restrictions:
 */
 
 using System;
+using System.Buffers;
 using System.Collections.Generic;
 using DotRecast.Core;
 using DotRecast.Core.Numerics;
@@ -1246,7 +1247,9 @@ namespace DotRecast.Detour
 
             int ip = poly.index;
 
-            float[] verts = new float[m_maxVertPerPoly * 3];
+            var shared = ArrayPool<float>.Shared;
+
+            float[] verts = shared.Rent(m_maxVertPerPoly * 3);
             int nv = poly.vertCount;
             for (int i = 0; i < nv; ++i)
             {
