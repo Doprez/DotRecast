@@ -100,7 +100,7 @@ namespace DotRecast.Detour
             }
 
             // Get connected polygons
-            List<long> neis = new List<long>();
+            List<long> neis = new List<long>(500);
 
             var status = navQuery.GetAttachedNavMesh().GetTileAndPolyByRef(path[0], out var tile, out var poly);
             if (status.Failed())
@@ -179,7 +179,7 @@ namespace DotRecast.Detour
             // Concatenate paths.
 
             // Adjust beginning of the buffer to include the visited.
-            List<long> result = new List<long>();
+            List<long> result = new List<long>(furthestVisited);
             // Store visited
             for (int i = visited.Count - 1; i > furthestVisited; --i)
             {

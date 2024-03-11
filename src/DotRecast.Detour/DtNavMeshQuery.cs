@@ -19,6 +19,7 @@ freely, subject to the following restrictions:
 */
 
 using System;
+using System.Buffers;
 using System.Collections.Generic;
 using DotRecast.Core;
 using DotRecast.Core.Collections;
@@ -1758,6 +1759,8 @@ namespace DotRecast.Detour
             return DtStatus.DT_SUCCESS | (straightPath.Count >= maxStraightPath ? DtStatus.DT_BUFFER_TOO_SMALL : DtStatus.DT_STATUS_NOTHING);
         }
 
+        LinkedList<DtNode> reusableStack = new LinkedList<DtNode>();
+
         /// @par
         ///
         /// This method is optimized for small delta movement and a small number of 
@@ -1793,6 +1796,7 @@ namespace DotRecast.Detour
             out RcVec3f resultPos, ref List<long> visited)
         {
             resultPos = RcVec3f.Zero;
+            reusableStack.Clear();
 
             if (null != visited)
                 visited.Clear();
@@ -1812,7 +1816,7 @@ namespace DotRecast.Detour
             startNode.total = 0;
             startNode.id = startRef;
             startNode.flags = DtNodeFlags.DT_NODE_CLOSED;
-            LinkedList<DtNode> stack = new LinkedList<DtNode>();
+            LinkedList<DtNode> stack = reusableStack;
             stack.AddLast(startNode);
 
             RcVec3f bestPos = new RcVec3f();
