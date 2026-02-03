@@ -47,7 +47,7 @@ namespace DotRecast.Detour
         /** The maximum number of vertices per navigation polygon. */
         private int m_maxVertPerPoly;
 
-        public DtStatus Init(DtNavMeshParams param, int maxVertsPerPoly)
+        public DtStatus Init(in DtNavMeshParams param, int maxVertsPerPoly)
         {
             m_params = param;
             m_orig = param.orig;
@@ -275,7 +275,7 @@ namespace DotRecast.Detour
                 while (nodeIndex < end)
                 {
                     DtBVNode node = tile.data.bvTree[nodeIndex];
-                    bool overlap = DtUtils.OverlapQuantBounds(ref bmin, ref bmax, ref node.bmin, ref node.bmax);
+                    bool overlap = DtUtils.OverlapQuantBounds(bmin, bmax, node.bmin, node.bmax);
                     bool isLeafNode = node.i >= 0;
 
                     if (isLeafNode && overlap)
